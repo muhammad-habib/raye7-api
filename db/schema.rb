@@ -41,13 +41,6 @@ ActiveRecord::Schema.define(version: 20170610034500) do
     t.index ["source_id"], name: "index_trips_on_source_id", using: :btree
   end
 
-  create_table "trips_users", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer "user_id"
-    t.integer "trip_id"
-    t.index ["trip_id"], name: "index_trips_users_on_trip_id", using: :btree
-    t.index ["user_id"], name: "index_trips_users_on_user_id", using: :btree
-  end
-
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "fName"
     t.string   "lName"
@@ -62,12 +55,19 @@ ActiveRecord::Schema.define(version: 20170610034500) do
     t.index ["work_id"], name: "index_users_on_work_id", using: :btree
   end
 
+  create_table "users_trips", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "user_id"
+    t.integer "trip_id"
+    t.index ["trip_id"], name: "index_users_trips_on_trip_id", using: :btree
+    t.index ["user_id"], name: "index_users_trips_on_user_id", using: :btree
+  end
+
   add_foreign_key "trips", "places", column: "destination_id"
   add_foreign_key "trips", "places", column: "source_id"
   add_foreign_key "trips", "users", column: "driver_id"
-  add_foreign_key "trips_users", "trips"
-  add_foreign_key "trips_users", "users"
   add_foreign_key "users", "groups"
   add_foreign_key "users", "places", column: "home_id"
   add_foreign_key "users", "places", column: "work_id"
+  add_foreign_key "users_trips", "trips"
+  add_foreign_key "users_trips", "users"
 end

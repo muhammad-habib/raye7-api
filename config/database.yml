@@ -26,5 +26,3 @@ test:
 production:
   <<: *default
   database: api_production
-  username: raye7-api
-  password: <%= ENV['RAYE7_DATABASE_PASSWORD'] %>
