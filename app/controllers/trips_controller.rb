@@ -14,6 +14,12 @@ class TripsController < ApplicationController
     json_response(trips)
   end
 
+  # GET /
+  def welcome
+
+    json_response({ message: :welcome }, 200)
+  end
+
   # POST /trips
   def create
     @trip = Trip.create!(trip_params)

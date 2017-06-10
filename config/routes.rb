@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :users
   get '/trips' => 'trips#index'
   get '/trips/:id' => 'trips#show'
+  get '/' => 'trips#welcome'
   post '/trips' => 'trips#create'
   post '/trips/:id/join' => 'trips#join'
   post '/trips/:id/leave' => 'trips#leave'
