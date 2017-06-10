@@ -41,7 +41,7 @@ RSpec.describe 'Places API', type: :request do
     context 'when the request is invalid' do
       before { post '/places', params: { name: 'Zamalek' } }
 
-      it 'returns status code 201' do
+      it 'returns status code 442' do
         expect(response).to have_http_status(422)
       end
     end
